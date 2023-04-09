@@ -1,4 +1,4 @@
-package com.example.sportsshop;
+package com.example.sportsshop.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.sportsshop.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -30,7 +31,7 @@ public class RegistrationActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         if(auth.getCurrentUser() != null){
-            startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
+            startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
             finish();
         }
 
@@ -90,6 +91,6 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void signin(View view) {
-        startActivity(new Intent(RegistrationActivity.this,LoginActivity.class));
+        startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
     }
 }
