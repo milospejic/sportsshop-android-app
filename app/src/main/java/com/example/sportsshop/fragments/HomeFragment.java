@@ -18,8 +18,10 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.sportsshop.R;
 import com.example.sportsshop.adapters.CategoryAdapter;
 import com.example.sportsshop.adapters.NewProductsAdapter;
+import com.example.sportsshop.adapters.PopularProductsAdapter;
 import com.example.sportsshop.models.CategoryModel;
 import com.example.sportsshop.models.NewProductsModel;
+import com.example.sportsshop.models.PopularProductsModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,7 +35,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
 
-    RecyclerView catRecyclerView, newProductsRecyclerView;
+    RecyclerView catRecyclerView, newProductsRecyclerView,popularProductsRecyclerView;
 
 
     CategoryAdapter categoryAdapter;
@@ -42,6 +44,10 @@ public class HomeFragment extends Fragment {
 
     NewProductsAdapter newProductsAdapter;
     List<NewProductsModel> newProductsModelList;
+
+    PopularProductsAdapter popularProductsAdapter;
+    List<PopularProductsModel> popularProductsModelList;
+
 
 
     FirebaseFirestore db;
@@ -60,6 +66,7 @@ public class HomeFragment extends Fragment {
 
         catRecyclerView= root.findViewById(R.id.rec_category);
         newProductsRecyclerView = root.findViewById(R.id.new_product_rec);
+        popularProductsRecyclerView = root.findViewById(R.id.popular_rec);
 
         db = FirebaseFirestore.getInstance();
 
@@ -121,6 +128,30 @@ public class HomeFragment extends Fragment {
                         }
                     }
                 });
+
+
+        popularProductsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL, false));
+        popularProductsModelList = new ArrayList<>();
+        popularProductsAdapter = new PopularProductsAdapter(getContext(),popularProductsModelList);
+        popularProductsRecyclerView.setAdapter(popularProductsAdapter);
+
+        db.collection("All Products")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot document : task.getResult()) {
+                                PopularProductsModel popularProductsModel = document.toObject(PopularProductsModel.class);
+                                popularProductsModelList.add(popularProductsModel);
+                                popularProductsAdapter.notifyDataSetChanged();
+                            }
+                        }else{
+                            Toast.makeText(getActivity(), ""+task.getException(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
         return root;
     }
 }
