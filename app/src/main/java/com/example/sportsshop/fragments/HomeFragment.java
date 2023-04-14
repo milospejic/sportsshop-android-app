@@ -1,5 +1,6 @@
 package com.example.sportsshop.fragments;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
@@ -35,6 +37,8 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
 
+    LinearLayout linearLayout;
+    ProgressDialog progressDialog;
     RecyclerView catRecyclerView, newProductsRecyclerView,popularProductsRecyclerView;
 
 
@@ -64,11 +68,16 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        progressDialog = new ProgressDialog(getActivity());
         catRecyclerView= root.findViewById(R.id.rec_category);
         newProductsRecyclerView = root.findViewById(R.id.new_product_rec);
         popularProductsRecyclerView = root.findViewById(R.id.popular_rec);
 
         db = FirebaseFirestore.getInstance();
+
+
+        linearLayout = root.findViewById(R.id.home_layout);
+        linearLayout.setVisibility(View.GONE);
 
         ImageSlider imageSlider = root.findViewById(R.id.image_slider);
         List<SlideModel> slideModels = new ArrayList<>();
@@ -80,6 +89,10 @@ public class HomeFragment extends Fragment {
         imageSlider.setImageList(slideModels);
 
 
+        progressDialog.setTitle("Welcome to SportsShop");
+        progressDialog.setMessage("please wait...");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
 
         catRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL, false));
         categoryModelList = new ArrayList<>();
@@ -97,6 +110,8 @@ public class HomeFragment extends Fragment {
                                 CategoryModel categoryModel = document.toObject(CategoryModel.class);
                                 categoryModelList.add(categoryModel);
                                 categoryAdapter.notifyDataSetChanged();
+                                linearLayout.setVisibility(View.VISIBLE);
+                                progressDialog.dismiss();
                             }
                         }else{
                             Toast.makeText(getActivity(), ""+task.getException(), Toast.LENGTH_SHORT).show();

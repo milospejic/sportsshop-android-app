@@ -10,5 +10,21 @@
     <string name="don_t_have">Don\'t have an account?</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+        nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.</string>
+    <string name="product_name">Product name</string>
+    <string name="basic_rating">5.0</string>
+    <string name="basic_price">5000</string>
+    <string name="basic_quantity">1</string>
+    <string name="rsd">rsd</string>
+    <string name="price">Price</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="buy_now">Buy now</string>
+
 
 </resources>
