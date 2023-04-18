@@ -51,6 +51,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/details_rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -106,6 +107,7 @@
                  android:textColor="@color/black"/>
 
              <TextView
+                 android:id="@+id/details_price"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:text="@string/basic_price"
