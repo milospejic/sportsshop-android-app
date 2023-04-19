@@ -1,18 +1,30 @@
 package com.example.sportsshop.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.sportsshop.R;
 import com.example.sportsshop.models.NewProductsModel;
 import com.example.sportsshop.models.PopularProductsModel;
 import com.example.sportsshop.models.ShowAllModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.ktx.Firebase;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
@@ -27,6 +39,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
     PopularProductsModel popularProductsModel = null;
 
     ShowAllModel showAllModel = null;
+
+    FirebaseAuth auth;
     private FirebaseFirestore firestore;
 
     @Override
@@ -35,6 +49,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_details);
 
         firestore = FirebaseFirestore.getInstance();
+
+        auth=FirebaseAuth.getInstance();
 
         final Object object = getIntent().getSerializableExtra("details");
 
@@ -84,5 +100,42 @@ public class ProductDetailsActivity extends AppCompatActivity {
             price.setText(String.valueOf(showAllModel.getPrice()));
 
         }
+
+
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addToCart();
+            }
+        });
+    }
+
+    private void addToCart() {
+        String saveCurrentTime, saveCurrentDate;
+
+        Calendar calForDate = Calendar.getInstance();
+
+        SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
+        saveCurrentDate = currentDate.format(calForDate.getTime());
+
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+        saveCurrentTime = currentTime.format(calForDate.getTime());
+
+        final HashMap<String,Object> cartMap = new HashMap<>();
+
+        cartMap.put("productName", name.getText().toString());
+        cartMap.put("productPrice", price.getText().toString());
+        cartMap.put("currentTime", saveCurrentTime);
+        cartMap.put("currentDate", name.getText().toString());
+
+        firestore.collection("AddToCart").document(auth.getCurrentUser().getUid())
+                .collection("User").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                        Toast.makeText(ProductDetailsActivity.this, "Added to a cart", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                });
+
     }
 }

@@ -1,6 +1,8 @@
 package com.example.sportsshop.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.sportsshop.R;
+import com.example.sportsshop.activities.ShowAllActivity;
 import com.example.sportsshop.models.CategoryModel;
 
 import java.util.List;
@@ -33,10 +36,19 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         Glide.with(context).load(list.get(position).getImg_url()).into(holder.catImg);
         holder.catName.setText(list.get(position).getName());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ShowAllActivity.class);
+                intent.putExtra("category", list.get(position).getType());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
