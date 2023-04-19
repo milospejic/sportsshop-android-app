@@ -1,6 +1,7 @@
 package com.example.sportsshop.fragments;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,12 +13,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.sportsshop.R;
+import com.example.sportsshop.activities.ShowAllActivity;
 import com.example.sportsshop.adapters.CategoryAdapter;
 import com.example.sportsshop.adapters.NewProductsAdapter;
 import com.example.sportsshop.adapters.PopularProductsAdapter;
@@ -37,6 +40,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
 
+    TextView catShowAll,newProductsShowAll, popularProductsShowAll;
     LinearLayout linearLayout;
     ProgressDialog progressDialog;
     RecyclerView catRecyclerView, newProductsRecyclerView,popularProductsRecyclerView;
@@ -68,12 +72,40 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
+        db = FirebaseFirestore.getInstance();
+
         progressDialog = new ProgressDialog(getActivity());
         catRecyclerView= root.findViewById(R.id.rec_category);
         newProductsRecyclerView = root.findViewById(R.id.new_product_rec);
         popularProductsRecyclerView = root.findViewById(R.id.popular_rec);
 
-        db = FirebaseFirestore.getInstance();
+        catShowAll = root.findViewById(R.id.category_see_all);
+        popularProductsShowAll = root.findViewById(R.id.popular_see_all);
+        newProductsShowAll = root.findViewById(R.id.newProducts_see_all);
+
+        catShowAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ShowAllActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        newProductsShowAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ShowAllActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        popularProductsShowAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ShowAllActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         linearLayout = root.findViewById(R.id.home_layout);
