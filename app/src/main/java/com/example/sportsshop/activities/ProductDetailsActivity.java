@@ -30,9 +30,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
 
     ImageView detailsImg;
-    TextView description, name, rating, price;
+    TextView description, name, rating, price, quantity;
     Button addToCart, buyNow;
     ImageView addItems, removeItems;
+
+    int totalQuantity = 1;
+    int totalPrice = 0;
 
     NewProductsModel newProductsModel = null;
 
@@ -72,6 +75,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
         buyNow = findViewById(R.id.buy_now);
         addItems = findViewById(R.id.add_item);
         removeItems = findViewById(R.id.remove_item);
+        quantity = findViewById(R.id.quantity);
+
 
 
         if(newProductsModel != null){
@@ -80,6 +85,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
             description.setText(newProductsModel.getDescription());
             rating.setText(newProductsModel.getRating());
             price.setText(String.valueOf(newProductsModel.getPrice()));
+
+            totalPrice = newProductsModel.getPrice() * totalQuantity;
 
         }
 
@@ -90,6 +97,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
             rating.setText(popularProductsModel.getRating());
             price.setText(String.valueOf(popularProductsModel.getPrice()));
 
+            totalPrice = popularProductsModel.getPrice() * totalQuantity;
+
         }
 
         if(showAllModel != null){
@@ -99,6 +108,8 @@ public class ProductDetailsActivity extends AppCompatActivity {
             rating.setText(showAllModel.getRating());
             price.setText(String.valueOf(showAllModel.getPrice()));
 
+            totalPrice = showAllModel.getPrice() * totalQuantity;
+
         }
 
 
@@ -106,6 +117,43 @@ public class ProductDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addToCart();
+            }
+        });
+
+        addItems.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (totalQuantity < 10) {
+                    totalQuantity++;
+                    quantity.setText(String.valueOf(totalQuantity));
+
+                    if(newProductsModel != null){
+                        totalPrice = newProductsModel.getPrice() * totalQuantity;
+                    }
+
+                    if(popularProductsModel != null){
+                        totalPrice = popularProductsModel.getPrice() * totalQuantity;
+                    }
+
+                    if(showAllModel != null){
+                        totalPrice = showAllModel.getPrice() * totalQuantity;
+                    }
+
+                }
+
+
+            }
+        });
+
+        removeItems.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (totalQuantity > 1) {
+                    totalQuantity--;
+                    quantity.setText(String.valueOf(totalQuantity));
+                }
             }
         });
     }
@@ -127,6 +175,9 @@ public class ProductDetailsActivity extends AppCompatActivity {
         cartMap.put("productPrice", price.getText().toString());
         cartMap.put("currentTime", saveCurrentTime);
         cartMap.put("currentDate", name.getText().toString());
+        cartMap.put("totalQuantity", quantity.getText().toString());
+        cartMap.put("totalPrice", totalPrice);
+
 
         firestore.collection("AddToCart").document(auth.getCurrentUser().getUid())
                 .collection("User").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
