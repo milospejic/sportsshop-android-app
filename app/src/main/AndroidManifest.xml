@@ -15,6 +15,13 @@
         android:theme="@style/Theme.SportsShop"
         tools:targetApi="31">
         <activity
+            android:name=".activities.CartActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".activities.ShowAllActivity"
             android:exported="false">
             <meta-data
