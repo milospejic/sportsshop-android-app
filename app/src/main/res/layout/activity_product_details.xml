@@ -17,6 +17,15 @@
         android:src="@drawable/launcher_background"
         />
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/product_details_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Product details" />
+
     <androidx.cardview.widget.CardView
         android:translationY="-50dp"
         android:layout_marginRight="20dp"

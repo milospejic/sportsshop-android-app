@@ -2,6 +2,7 @@ package com.example.sportsshop.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.View;
@@ -43,6 +44,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     ShowAllModel showAllModel = null;
 
+    Toolbar toolbar;
     FirebaseAuth auth;
     private FirebaseFirestore firestore;
 
@@ -52,6 +54,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product_details);
 
         firestore = FirebaseFirestore.getInstance();
+
+
+        toolbar = findViewById(R.id.product_details_toolbar);
+        setSupportActionBar(toolbar);
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         auth=FirebaseAuth.getInstance();
 
