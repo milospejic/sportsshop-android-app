@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.sportsshop.R;
@@ -38,6 +39,7 @@ public class CartActivity extends AppCompatActivity {
     MyCartAdapter cartAdapter;
      FirebaseAuth auth;
      FirebaseFirestore firestore;
+     Button buyNow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,7 @@ public class CartActivity extends AppCompatActivity {
         }
 
         LocalBroadcastManager.getInstance(this)
-                .registerReceiver(mMessageReciever,new IntentFilter("MyTotalAmount"));
+                .registerReceiver(mMessageReceiver,new IntentFilter("MyTotalAmount"));
 
         recyclerView = findViewById(R.id.cart_rec);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -62,6 +64,7 @@ public class CartActivity extends AppCompatActivity {
         cartAdapter = new MyCartAdapter(this, cartModelList);
         recyclerView.setAdapter(cartAdapter);
         overallAmount = findViewById(R.id.textView3);
+        buyNow = findViewById(R.id.buy_now);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,10 +85,17 @@ public class CartActivity extends AppCompatActivity {
                         }
                     }
                 });
+        buyNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CartActivity.this,AddressActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
-    public BroadcastReceiver mMessageReciever = new BroadcastReceiver() {
+    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
 

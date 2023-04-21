@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="130dp"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:padding="5dp"
     app:cardCornerRadius="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EDEDED">
+        android:background="#EDEDED"
+        >
 
         <ImageView
             android:id="@+id/new_img"
@@ -18,7 +20,7 @@
             android:layout_height="100dp"
             android:layout_marginTop="8dp"
             android:scaleType="centerCrop"
-
+            android:contentDescription="@string/product_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +32,7 @@
             android:background="@color/lightlavander"
             android:fontFamily="@font/sulphur_point_bold"
             android:padding="6dp"
-            android:text="New"
+            android:text="@string/new_p"
             android:textColor="@color/white"
             android:textSize="13sp"
             android:textStyle="bold"
@@ -45,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:fontFamily="@font/sulphur_point_bold"
-            android:text="Product Name"
+            android:text="@string/product_name"
             android:textSize="17sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="Price: $"
+                android:text="@string/price_rsd"
                 android:textColor="#673AB7"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -78,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="90"
+                android:text="@string/basic_price"
                 android:textColor="#673AB7"
                 android:textSize="18sp"
                 android:textStyle="bold"

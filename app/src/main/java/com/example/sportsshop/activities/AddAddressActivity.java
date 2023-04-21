@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -95,6 +96,8 @@ public class AddAddressActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentReference> task) {
                                     Toast.makeText(AddAddressActivity.this, "Address added", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(AddAddressActivity.this,ProductDetailsActivity.class));
+                                    finish();
                                 }
                             });
                 }

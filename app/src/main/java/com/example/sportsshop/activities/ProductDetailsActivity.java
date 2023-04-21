@@ -142,7 +142,20 @@ public class ProductDetailsActivity extends AppCompatActivity {
         buyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProductDetailsActivity.this,AddressActivity.class));
+                Intent intent = new Intent(ProductDetailsActivity.this,AddressActivity.class);
+                if(newProductsModel != null){
+                    intent.putExtra("item",newProductsModel);
+                }
+
+                if(popularProductsModel != null){
+                    intent.putExtra("item",popularProductsModel);
+                }
+
+                if(showAllModel != null){
+                    intent.putExtra("item",showAllModel);
+                }
+
+                startActivity(intent);
             }
         });
 
@@ -200,7 +213,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         cartMap.put("productName", name.getText().toString());
         cartMap.put("productPrice", price.getText().toString());
         cartMap.put("currentTime", saveCurrentTime);
-        cartMap.put("currentDate", name.getText().toString());
+        cartMap.put("currentDate", saveCurrentDate);
         cartMap.put("totalQuantity", quantity.getText().toString());
         cartMap.put("totalPrice", totalPrice);
 
