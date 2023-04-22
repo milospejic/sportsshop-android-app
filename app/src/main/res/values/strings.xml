@@ -34,6 +34,8 @@
     <string name="shipping">Shipping</string>
     <string name="total">Total</string>
     <string name="card">Credit card</string>
+    <string name="change">Change profile settings</string>
+    <string name="old_password">Old password</string>
 
 
 </resources>

@@ -11,16 +11,27 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.sportsshop.R;
+import com.example.sportsshop.models.AddressModel;
+import com.example.sportsshop.models.ProfileModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegistrationActivity extends AppCompatActivity {
 
     EditText name, email,  password, confirm_password;
     private FirebaseAuth auth;
-
+    FirebaseFirestore firestore;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +40,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
        // getSupportActionBar().hide();
         auth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+        database = FirebaseDatabase.getInstance();
 
         if(auth.getCurrentUser() != null){
             startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
@@ -74,12 +87,19 @@ public class RegistrationActivity extends AppCompatActivity {
             return;
         }
 
+
+
         auth.createUserWithEmailAndPassword(userEmail,userPassword)
                 .addOnCompleteListener(RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
+
+                            ProfileModel profileModel = new ProfileModel(userName,userEmail,userPassword);
+                            String id = task.getResult().getUser().getUid();
+                            database.getReference().child("Users").child(id).setValue(profileModel);
+
                             Toast.makeText(RegistrationActivity.this,"Successfully signed up!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(RegistrationActivity.this,MainActivity.class));
                         }else{

@@ -70,6 +70,7 @@ public class CartActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         firestore.collection("AddToCart").document(auth.getCurrentUser().getUid())
                 .collection("User").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
