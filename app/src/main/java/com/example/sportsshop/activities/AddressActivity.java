@@ -106,9 +106,9 @@ public class AddressActivity extends AppCompatActivity implements AddressAdapter
                     PopularProductsModel popularProductsModel = (PopularProductsModel) object;
                     amount = popularProductsModel.getPrice();
                 }
-                if(object instanceof ShowAllModel){
-                    ShowAllModel showAllModel = (ShowAllModel) object;
-                    amount = showAllModel.getPrice();
+                if(object instanceof String){
+                    String string = (String) object ;
+                    amount = Double.parseDouble(string);
                 }
                 Intent intent = new Intent(AddressActivity.this, PaymentActivity.class);
                 intent.putExtra("amount",amount);

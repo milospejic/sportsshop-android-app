@@ -11,12 +11,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sportsshop.R;
 import com.example.sportsshop.activities.CartActivity;
-import com.example.sportsshop.activities.MainActivity;
 import com.example.sportsshop.models.MyCartModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,6 +27,7 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
 
     private Context context;
     private List<MyCartModel> list;
+    private CartActivity cartActivity;
     int totalAmount = 0;
 
     FirebaseAuth auth;
@@ -39,6 +38,15 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
         this.list = list;
         auth= FirebaseAuth.getInstance();
         firestore = FirebaseFirestore.getInstance();
+    }
+
+    public MyCartAdapter(Context context, List<MyCartModel> list, CartActivity cartActivity) {
+        this.context = context;
+        this.list = list;
+        this.cartActivity=cartActivity;
+        auth= FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+
     }
 
     @NonNull
@@ -67,8 +75,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()) {
+                                    cartActivity.overallTotalAmount = String.valueOf(Double.parseDouble(cartActivity.overallTotalAmount) - list.get(position).getTotalPrice());
                                     list.remove(list.get(position));
                                     notifyDataSetChanged();
+cartActivity.calculateTotalAmount(list);
                                     Toast.makeText(context, "Successfully deleted!", Toast.LENGTH_SHORT).show();
 
                                 }
@@ -77,12 +87,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
             }
         });
 
-        totalAmount = totalAmount + list.get(position).getTotalPrice();
-
-        Intent intent = new Intent("MyTotalAmount");
-        intent.putExtra("totalAmount", totalAmount);
-
-        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
 
     }
 

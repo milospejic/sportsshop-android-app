@@ -27,6 +27,13 @@
     <string name="add_to_cart">Add to cart</string>
     <string name="buy_now">Buy now</string>
     <string name="new_p">New</string>
+    <string name="check_out">Check out</string>
+    <string name="zero">0</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="discount">Discount</string>
+    <string name="shipping">Shipping</string>
+    <string name="total">Total</string>
+    <string name="card">Credit card</string>
 
 
 </resources>
