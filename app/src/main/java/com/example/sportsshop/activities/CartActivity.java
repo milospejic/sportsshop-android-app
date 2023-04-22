@@ -15,12 +15,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+
 import com.example.sportsshop.R;
 import com.example.sportsshop.adapters.MyCartAdapter;
 import com.example.sportsshop.models.MyCartModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -30,7 +32,7 @@ import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
 
-    int overallTotalAmount;
+    String overallTotalAmount="0";
     TextView overallAmount;
     Toolbar toolbar;
     RecyclerView recyclerView;
@@ -38,6 +40,7 @@ public class CartActivity extends AppCompatActivity {
     MyCartAdapter cartAdapter;
      FirebaseAuth auth;
      FirebaseFirestore firestore;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,22 +78,44 @@ public class CartActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
                             for(DocumentSnapshot document : task.getResult().getDocuments()) {
+
+                                String documentId = document.getId();
+
                                 MyCartModel myCartModel = document.toObject(MyCartModel.class);
+                                if(myCartModel != null){
+                                    myCartModel.setDocumentId(documentId);
+                                }
                                 cartModelList.add(myCartModel);
                                 cartAdapter.notifyDataSetChanged();
                             }
                         }
                     }
                 });
+<<<<<<< HEAD
 
     }
 
     public BroadcastReceiver mMessageReciever = new BroadcastReceiver() {
+=======
+        buyNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CartActivity.this,AddressActivity.class);
+                intent.putExtra("item", overallTotalAmount);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+
+    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+>>>>>>> 2e55ab3 (Added onClick listener for payment button in CartActivity and added button for remove from cart)
         @Override
         public void onReceive(Context context, Intent intent) {
 
             int totalBill = intent.getIntExtra("totalAmount", 0);
-
+            overallTotalAmount =String.valueOf(totalBill);
             overallAmount.setText("Total Amount: " + totalBill + "rsd");
         }
     };

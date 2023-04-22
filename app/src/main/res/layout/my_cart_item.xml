@@ -173,6 +173,15 @@
                 android:text="Total Quantity"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+            <ImageView
+
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_baseline_delete"
+                />
+
+            
 
         </LinearLayout>
 

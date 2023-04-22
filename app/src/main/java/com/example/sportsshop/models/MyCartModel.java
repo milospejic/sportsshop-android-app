@@ -6,6 +6,7 @@ public class MyCartModel implements Serializable {
 
     String currentTime, currentDate, productName, productPrice,totalQuantity;
     int totalPrice;
+    String documentId;
 
     public MyCartModel()  {
     }
@@ -17,6 +18,14 @@ public class MyCartModel implements Serializable {
         this.productPrice = productPrice;
         this.totalQuantity = totalQuantity;
         this.totalPrice = totalPrice;
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 
     public String getCurrentTime() {

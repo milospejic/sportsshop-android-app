@@ -57,6 +57,13 @@ public class AddressActivity extends AppCompatActivity implements AddressAdapter
             }
         });
 
+<<<<<<< HEAD
+=======
+
+        Object object = getIntent().getSerializableExtra("item");
+
+
+>>>>>>> 2e55ab3 (Added onClick listener for payment button in CartActivity and added button for remove from cart)
         recyclerView = findViewById(R.id.address_recycler);
         paymentBtn = findViewById(R.id.payment_btn);
 
@@ -92,7 +99,30 @@ public class AddressActivity extends AppCompatActivity implements AddressAdapter
         paymentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                 startActivity(new Intent(AddressActivity.this, PaymentActivity.class));
+=======
+                double amount = 0.0;
+                if(object instanceof NewProductsModel){
+                    NewProductsModel newProductsModel = (NewProductsModel) object;
+                    amount = newProductsModel.getPrice();
+                }
+                if(object instanceof PopularProductsModel){
+                    PopularProductsModel popularProductsModel = (PopularProductsModel) object;
+                    amount = popularProductsModel.getPrice();
+                }
+                if(object instanceof ShowAllModel){
+                    ShowAllModel showAllModel = (ShowAllModel) object;
+                    amount = showAllModel.getPrice();
+                }
+                if(object instanceof String){
+                    String string = (String) object;
+                    amount = Double.parseDouble(string);
+                }
+                Intent intent = new Intent(AddressActivity.this, PaymentActivity.class);
+                intent.putExtra("amount",amount);
+                startActivity(intent);
+>>>>>>> 2e55ab3 (Added onClick listener for payment button in CartActivity and added button for remove from cart)
 
             }
         });

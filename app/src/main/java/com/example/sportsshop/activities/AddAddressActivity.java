@@ -70,19 +70,19 @@ public class AddAddressActivity extends AppCompatActivity {
                 String finalAddress = "";
 
                 if(!userName.isEmpty()){
-                    finalAddress+=userName;
+                    finalAddress+=userName+", ";
                 }
                 if(!userAddress.isEmpty()){
-                    finalAddress+=userAddress;
+                    finalAddress+=userAddress+", ";
                 }
                 if(!userCity.isEmpty()){
-                    finalAddress+=userCity;
+                    finalAddress+=userCity+", ";
                 }
                 if(!userPostalCode.isEmpty()){
-                    finalAddress+=userPostalCode;
+                    finalAddress+=userPostalCode+", ";
                 }
                 if(!userPhoneNumber.isEmpty()){
-                    finalAddress+=userPhoneNumber;
+                    finalAddress+=userPhoneNumber+". ";
                 }
 
                 if(!userName.isEmpty() && !userAddress.isEmpty() && !userCity.isEmpty() && !userPostalCode.isEmpty() && !userPhoneNumber.isEmpty())
@@ -95,6 +95,11 @@ public class AddAddressActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<DocumentReference> task) {
                                     Toast.makeText(AddAddressActivity.this, "Address added", Toast.LENGTH_SHORT).show();
+<<<<<<< HEAD
+=======
+                                    startActivity(new Intent(AddAddressActivity.this,AddressActivity.class));
+                                    finish();
+>>>>>>> 2e55ab3 (Added onClick listener for payment button in CartActivity and added button for remove from cart)
                                 }
                             });
                 }
