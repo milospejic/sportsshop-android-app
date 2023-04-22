@@ -15,6 +15,9 @@ import com.example.sportsshop.R;
 import com.example.sportsshop.adapters.AddressAdapter;
 import com.example.sportsshop.models.AddressModel;
 import com.example.sportsshop.models.MyCartModel;
+import com.example.sportsshop.models.NewProductsModel;
+import com.example.sportsshop.models.PopularProductsModel;
+import com.example.sportsshop.models.ShowAllModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -57,13 +60,8 @@ public class AddressActivity extends AppCompatActivity implements AddressAdapter
             }
         });
 
-<<<<<<< HEAD
-=======
-
         Object object = getIntent().getSerializableExtra("item");
 
-
->>>>>>> 2e55ab3 (Added onClick listener for payment button in CartActivity and added button for remove from cart)
         recyclerView = findViewById(R.id.address_recycler);
         paymentBtn = findViewById(R.id.payment_btn);
 
@@ -99,9 +97,6 @@ public class AddressActivity extends AppCompatActivity implements AddressAdapter
         paymentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
-                startActivity(new Intent(AddressActivity.this, PaymentActivity.class));
-=======
                 double amount = 0.0;
                 if(object instanceof NewProductsModel){
                     NewProductsModel newProductsModel = (NewProductsModel) object;
@@ -115,14 +110,9 @@ public class AddressActivity extends AppCompatActivity implements AddressAdapter
                     ShowAllModel showAllModel = (ShowAllModel) object;
                     amount = showAllModel.getPrice();
                 }
-                if(object instanceof String){
-                    String string = (String) object;
-                    amount = Double.parseDouble(string);
-                }
                 Intent intent = new Intent(AddressActivity.this, PaymentActivity.class);
                 intent.putExtra("amount",amount);
                 startActivity(intent);
->>>>>>> 2e55ab3 (Added onClick listener for payment button in CartActivity and added button for remove from cart)
 
             }
         });

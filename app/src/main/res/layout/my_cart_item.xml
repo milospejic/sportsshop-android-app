@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="Current Date: "
+                android:text="@string/product_name"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="Current Date: "
+                android:text="@string/price"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
