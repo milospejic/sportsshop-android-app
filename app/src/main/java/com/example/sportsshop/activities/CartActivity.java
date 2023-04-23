@@ -113,14 +113,4 @@ public class CartActivity extends AppCompatActivity {
         overallAmount.setText("Total Amount: " + totalAmount + "rsd");
     }
 
-/*
-    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-            int totalBill = intent.getIntExtra("totalAmount", 0);
-            overallTotalAmount = String.valueOf(totalBill);
-            overallAmount.setText("Total Amount: " + totalBill + "rsd");
-        }
-    };*/
 }

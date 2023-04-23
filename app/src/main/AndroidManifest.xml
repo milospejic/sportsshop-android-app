@@ -4,6 +4,14 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- PayPal SDK permissions -->
+    <uses-permission android:name="com.paypal.android.p2pmobile.permission.READ_DATA" />
+    <uses-permission android:name="com.paypal.android.p2pmobile.permission.WRITE_DATA" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.paypal.android.sdk.permission.CHECKOUT_ACTIVITY" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,6 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SportsShop"
         tools:targetApi="31">
+
         <activity
             android:name=".activities.ProfileActivity"
             android:exported="false">
@@ -91,6 +100,9 @@
                 android:value="" />
         </activity>
 
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
