@@ -97,7 +97,7 @@ public class AddAddressActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<DocumentReference> task) {
                                     Toast.makeText(AddAddressActivity.this, "Address added", Toast.LENGTH_SHORT).show();
 
-                                    startActivity(new Intent(AddAddressActivity.this,AddressActivity.class));
+                                    //startActivity(new Intent(AddAddressActivity.this,AddressActivity.class));
                                     finish();
                                 }
                             });

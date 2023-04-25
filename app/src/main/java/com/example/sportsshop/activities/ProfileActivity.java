@@ -48,7 +48,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         auth = FirebaseAuth.getInstance();
-        if (auth.getCurrentUser() != null)
+        //if (auth.getCurrentUser() != null)
         oldEmail = auth.getCurrentUser().getEmail();
         database = FirebaseDatabase.getInstance();
         toolbar = findViewById(R.id.profile_toolbar);
@@ -112,7 +112,7 @@ public class ProfileActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()){
-                                                Toast.makeText(ProfileActivity.this, "password", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(ProfileActivity.this, "Success!", Toast.LENGTH_SHORT).show();
                                             }else {
                                                 Toast.makeText(ProfileActivity.this, "Error!" +task.getException(), Toast.LENGTH_SHORT).show();
                                             }
