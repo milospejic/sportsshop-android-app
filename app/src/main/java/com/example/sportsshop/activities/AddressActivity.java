@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.sportsshop.R;
 import com.example.sportsshop.adapters.AddressAdapter;
@@ -97,6 +98,7 @@ public class AddressActivity extends AppCompatActivity implements AddressAdapter
         paymentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 double amount = 0.0;
                 if(object instanceof NewProductsModel){
                     NewProductsModel newProductsModel = (NewProductsModel) object;
@@ -110,9 +112,14 @@ public class AddressActivity extends AppCompatActivity implements AddressAdapter
                     String string = (String) object ;
                     amount = Double.parseDouble(string);
                 }
-                Intent intent = new Intent(AddressActivity.this, PaymentActivity.class);
-                intent.putExtra("amount",amount);
-                startActivity(intent);
+
+                if(!mAddress.isEmpty()) {
+                    Intent intent = new Intent(AddressActivity.this, PaymentActivity.class);
+                    intent.putExtra("amount", amount);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(AddressActivity.this, "Select address first!", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

@@ -76,7 +76,7 @@ public class ShowAllActivity extends AppCompatActivity {
                                     showAllAdapter.notifyDataSetChanged();
                                 }
                             }else{
-                                //Toast.makeText(getActivity(), ""+task.getException(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ShowAllActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -98,7 +98,7 @@ public class ShowAllActivity extends AppCompatActivity {
                                     showAllAdapter.notifyDataSetChanged();
                                 }
                             }else{
-                                //Toast.makeText(getActivity(), ""+task.getException(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ShowAllActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -119,7 +119,7 @@ public class ShowAllActivity extends AppCompatActivity {
                                     showAllAdapter.notifyDataSetChanged();
                                 }
                             }else{
-                                //Toast.makeText(getActivity(), ""+task.getException(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ShowAllActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -140,7 +140,7 @@ public class ShowAllActivity extends AppCompatActivity {
                                     showAllAdapter.notifyDataSetChanged();
                                 }
                             }else{
-                                //Toast.makeText(getActivity(), ""+task.getException(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ShowAllActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

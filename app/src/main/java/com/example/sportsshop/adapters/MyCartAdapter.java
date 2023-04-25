@@ -75,10 +75,11 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.ViewHolder
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(task.isSuccessful()) {
-                                    cartActivity.overallTotalAmount = String.valueOf(Double.parseDouble(cartActivity.overallTotalAmount) - list.get(position).getTotalPrice());
+                                    cartActivity.overallTotalAmount = String.valueOf(Double.parseDouble(cartActivity.overallTotalAmount) -
+                                            list.get(position).getTotalPrice());
                                     list.remove(list.get(position));
                                     notifyDataSetChanged();
-cartActivity.calculateTotalAmount(list);
+                                    cartActivity.calculateTotalAmount(list);
                                     Toast.makeText(context, "Successfully deleted!", Toast.LENGTH_SHORT).show();
 
                                 }

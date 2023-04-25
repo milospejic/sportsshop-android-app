@@ -52,9 +52,8 @@ public class CartActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        /*LocalBroadcastManager.getInstance(this)
-                .registerReceiver(mMessageReceiver, new IntentFilter("MyTotalAmount"));
-*/
+
+
         recyclerView = findViewById(R.id.cart_rec);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         cartModelList = new ArrayList<>();
