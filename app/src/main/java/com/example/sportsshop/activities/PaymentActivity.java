@@ -1,5 +1,6 @@
 package com.example.sportsshop.activities;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,8 +13,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sportsshop.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
@@ -23,6 +30,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class PaymentActivity extends AppCompatActivity {
@@ -30,6 +41,8 @@ public class PaymentActivity extends AppCompatActivity {
     public static final String clientKey = "AZtJ_Qcy1Ke8DlBqxQgfO6SZfaxnZVM-CF6nnJTyVHq4_p6RvgoNiU5xCLz6oM_JEs1VEw-XCpT7wnJM";
     public static final int PAYPAL_REQUEST_CODE = 123;
 
+    FirebaseFirestore firestore;
+    FirebaseAuth auth;
     private static PayPalConfiguration config = new PayPalConfiguration()
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
             .clientId(clientKey);
@@ -43,6 +56,9 @@ public class PaymentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+
+        auth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
 
         toolbar = findViewById(R.id.payment_toolbar);
         setSupportActionBar(toolbar);
@@ -106,27 +122,36 @@ public class PaymentActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PAYPAL_REQUEST_CODE) {
-
+            String payment = "No";
+            Map<String,String> map = new HashMap<>();
+            map.put("userId", auth.getCurrentUser().getUid());
+            map.put("userEmail", auth.getCurrentUser().getEmail());
+            map.put("amount", total.getText().toString());
+            Calendar calForDate = Calendar.getInstance();
+            SimpleDateFormat currentDate = new SimpleDateFormat("MM dd, yyyy");
+            map.put("date",  currentDate.format(calForDate.getTime()));
             if (resultCode == Activity.RESULT_OK) {
-
                 PaymentConfirmation confirm = data.getParcelableExtra(com.paypal.android.sdk.payments.PaymentActivity.EXTRA_RESULT_CONFIRMATION);
-
                 if (confirm != null) {
-                    try {
-                        String paymentDetails = confirm.toJSONObject().toString(4);
-                        JSONObject payObj = new JSONObject(paymentDetails);
-                        String payID = payObj.getJSONObject("response").getString("id");
-                        String state = payObj.getJSONObject("response").getString("state");
-                       // paymentTV.setText("Payment " + state + "\n with payment id is " + payID);
-                    } catch (JSONException e) {
-                        Log.e("Error", "an extremely unlikely failure occurred: ", e);
-                    }
+                    payment = "Yes";
+                    map.put("paid",  payment);
                 }
             } else if (resultCode == Activity.RESULT_CANCELED) {
+                map.put("paid",  payment);
                 Log.i("paymentExample", "The user canceled.");
             } else if (resultCode == com.paypal.android.sdk.payments.PaymentActivity.RESULT_EXTRAS_INVALID) {
+                map.put("paid",  payment);
                 Log.i("paymentExample", "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
             }
+            String finalPayment = payment;
+            firestore.collection("CurrentUser").document(auth.getCurrentUser().getUid())
+                    .collection("Orders").add(map).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentReference> task) {
+                            Toast.makeText(PaymentActivity.this, "Order registered. Paid: " + finalPayment, Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(PaymentActivity.this,MainActivity.class));
+                        }
+                    });
         }
     }
 }
