@@ -49,15 +49,19 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            <TextView
-                android:fontFamily="@font/sulphur_point_bold"
-                android:id="@+id/details_name"
-                android:text="@string/product_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/details_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="79dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_toStartOf="@+id/details_rating"
+                    android:fontFamily="@font/sulphur_point_bold"
+                    android:text="@string/product_name"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/details_rating"
@@ -120,6 +124,7 @@
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:text="@string/basic_price"
+                 android:layout_marginLeft="5dp"
                  android:textStyle="bold"
                  android:fontFamily="@font/sulphur_point_bold"
                  android:textColor="@color/black"/>

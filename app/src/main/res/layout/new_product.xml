@@ -84,6 +84,7 @@
                 android:textColor="#673AB7"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:layout_marginLeft="5dp"
                 app:layout_constraintBottom_toBottomOf="@+id/dollar"
                 app:layout_constraintStart_toEndOf="@+id/dollar"
                 app:layout_constraintTop_toTopOf="@+id/dollar" />

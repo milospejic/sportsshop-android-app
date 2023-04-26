@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="Current Date: "
+                android:text="@string/cur_date"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="Current Date: "
+                android:text="@string/cur_date"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="Current Time: "
+                android:text="@string/cur_time"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="Current Time: "
+                android:text="@string/cur_time"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="Product Name: "
+                android:text="@string/prod_name"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="@string/product_name"
+                android:text="@string/prod_name"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="Product Price: "
+                android:text="@string/prod_price"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="@string/price"
+                android:text="@string/prod_price"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -133,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="Total Price "
+                android:text="@string/tot_price"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -143,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="Total price "
+                android:text="@string/tot_price"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -160,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="Total Quantity "
+                android:text="@string/tot_quantity"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -170,7 +170,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="Total Quantity"
+                android:text="@string/tot_quantity"
                 android:textSize="16sp"
                 android:textStyle="bold" />
             <ImageView
@@ -179,7 +179,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_baseline_delete"
-                />
+                android:contentDescription="@string/del_item" />
 
             
 

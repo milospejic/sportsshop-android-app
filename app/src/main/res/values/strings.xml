@@ -36,6 +36,25 @@
     <string name="card">Credit card</string>
     <string name="change">Change profile settings</string>
     <string name="old_password">Old password</string>
-
+    <string name="create_address">Create Address</string>
+    <string name="add_address">Add Address</string>
+    <string name="address_lane">Address Lane</string>
+    <string name="city">City</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="cur_date">Current Date: </string>
+    <string name="cur_time">Current Time: </string>
+    <string name="prod_name">Product Name: </string>
+    <string name="prod_price">Product Price: </string>
+    <string name="tot_price">Total Price: </string>
+    <string name="tot_quantity">Total Quantity: </string>
+    <string name="del_item">Delete Item</string>
+    <string name="category">Category</string>
+    <string name="new_products">New Products</string>
+    <string name="pop_products">Popular Products</string>
+    <string name="see_all">See All</string>
+    <string name="best">We provide best products.</string>
+    <string name="cat_name">Category Name</string>
+    <string name="serbia">Serbia</string>
 
 </resources>

@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@font/sulphur_point_bold"
-                android:text="Category"
+                android:text="@string/category"
                 android:textSize="21sp"
                 android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/sulphur_point_bold"
                 android:gravity="end"
-                android:text="See All"
+                android:text="@string/see_all"
                 android:textColor="@color/lightlavander"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -83,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="9dp"
                         android:fontFamily="@font/sulphur_point_bold"
-                        android:text="New Products"
+                        android:text="@string/new_products"
                         android:textSize="21sp"
                         android:textStyle="bold" />
 
@@ -92,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/new_product_name"
                         android:layout_marginLeft="9dp"
-                        android:text="We provide best products." />
+                        android:text="@string/best" />
 
                     <TextView
                         android:id="@+id/newProducts_see_all"
@@ -101,7 +101,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginRight="8dp"
                         android:fontFamily="@font/sulphur_point_bold"
-                        android:text="See All"
+                        android:text="@string/see_all"
                         android:textColor="@color/lightlavander"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -133,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="9dp"
                     android:fontFamily="@font/sulphur_point_bold"
-                    android:text="Popular Products"
+                    android:text="@string/pop_products"
                     android:textSize="21sp"
                     android:textStyle="bold" />
 
@@ -142,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/popular_products"
                     android:layout_marginLeft="9dp"
-                    android:text="We provide best products." />
+                    android:text="@string/best" />
 
                 <TextView
                     android:id="@+id/popular_see_all"
@@ -151,7 +151,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="8dp"
                     android:fontFamily="@font/sulphur_point_bold"
-                    android:text="See All"
+                    android:text="@string/see_all"
                     android:textColor="@color/lightlavander"
                     android:textSize="18sp"
                     android:textStyle="bold" />
